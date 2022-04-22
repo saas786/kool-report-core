@@ -75,6 +75,10 @@ class ResourceManager
     public function publishAssetFolder($fullLocalPath,$version="")
     {
         $fullLocalPath = Utility::standardizePathSeparator($fullLocalPath);
+        // Fails deployer symlinking.
+        // @see https://www.koolreport.com/forum/topics/24
+        //
+        // $fullLocalPath = Utility::getSymbolicPath($fullLocalPath);
         $assets = Utility::get($this->report->getSettings(), "assets");
         
         $document_root = Utility::getDocumentRoot();
